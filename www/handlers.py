@@ -28,5 +28,7 @@ def index(request):
 def api_get_users():
     users = yield from User.findAll(orderBy='created_at desc')
     for u in users:
-        u.passwd = '******'
+        u.passwd = 'abc123456'
     return dict(users=users)
+	
+	
