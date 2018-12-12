@@ -17,3 +17,7 @@ https://www.100txy.com/Home/Index/alidonate.html
 ## 实现简单MVC
 
 ![实现简单MVC](/www/static/images/showmvc.jpg)
+
+## 构建前端
+
+![实现简单MVC](/www/static/images/index.jpg)
