@@ -25,3 +25,7 @@ https://www.100txy.com/Home/Index/alidonate.html
 ## 实现web API
 
 ![实现web API](/www/static/images/jsonapi.jpg)
+
+## 注意
+初始化数据库，需要把schema.sql文件放到mysql.exe同级目录，然后输入命令：$ mysql -u root -p < schema.sql 进行初始化，文件放在conf目录下
+初始化数据库之后，需要添加Users表数据，运行test.py文件即可添加一条数据。
