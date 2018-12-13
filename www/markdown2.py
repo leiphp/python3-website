@@ -6,6 +6,7 @@
 from __future__ import generators
 
 r"""A fast and complete Python implementation of Markdown.
+
 [from http://daringfireball.net/projects/markdown/]
 > Markdown is a text-to-HTML filter; it translates an easy-to-read /
 > easy-to-write structured text format into HTML.  Markdown's text
@@ -17,15 +18,19 @@ r"""A fast and complete Python implementation of Markdown.
 > specifically to serve as a front-end to (X)HTML. You can use span-level
 > HTML tags anywhere in a Markdown document, and you can use block level
 > HTML tags (like <div> and <table> as well).
+
 Module usage:
+
     >>> import markdown2
     >>> markdown2.markdown("*boo!*")  # or use `html = markdown_path(PATH)`
     u'<p><em>boo!</em></p>\n'
+
     >>> markdowner = Markdown()
     >>> markdowner.convert("*boo!*")
     u'<p><em>boo!</em></p>\n'
     >>> markdowner.convert("**boom!**")
     u'<p><strong>boom!</strong></p>\n'
+
 This implementation of Markdown implements the full "core" syntax plus a
 number of extras (e.g., code syntax coloring, footnotes) as described on
 <https://github.com/trentm/python-markdown2/wiki/Extras>.
@@ -33,8 +38,10 @@ number of extras (e.g., code syntax coloring, footnotes) as described on
 
 cmdln_desc = """A fast and complete Python implementation of Markdown, a
 text-to-HTML conversion tool for web writers.
+
 Supported extra syntax options (see -x|--extras option below and
 see <https://github.com/trentm/python-markdown2/wiki/Extras> for details):
+
 * code-friendly: Disable _ and __ for em and strong.
 * cuddled-lists: Allow lists to be cuddled to the preceding paragraph.
 * fenced-code-blocks: Allows a code block to not have to be indented
@@ -405,6 +412,7 @@ class Markdown(object):
 
     def _get_emacs_vars(self, text):
         """Return a dictionary of emacs-style local variables.
+
         Parsing is done loosely according to this spec (and according to
         some in-practice deviations from this):
         http://www.gnu.org/software/emacs/manual/html_node/emacs/Specifying-File-Variables.html#Specifying-File-Variables
@@ -511,6 +519,7 @@ class Markdown(object):
         return g1 + (' ' * (self.tab_width - len(g1) % self.tab_width))
     def _detab(self, text):
         r"""Remove (leading?) tabs from a file.
+
             >>> m = Markdown()
             >>> m._detab("\tfoo")
             '    foo'
@@ -590,11 +599,13 @@ class Markdown(object):
 
     def _hash_html_blocks(self, text, raw=False):
         """Hashify HTML blocks
+
         We only want to do this for block-level HTML tags, such as headers,
         lists, and tables. That's because we still want to wrap <p>s around
         "paragraphs" that are wrapped in non-block-level tags, such as anchors,
         phrase emphasis, and spans. The list of tags we're looking for is
         hard-coded.
+
         @param raw {boolean} indicates if these are raw HTML blocks in
             the original source. It makes a difference in "safe" mode.
         """
@@ -740,12 +751,16 @@ class Markdown(object):
 
     def _strip_footnote_definitions(self, text):
         """A footnote definition looks like this:
+
             [^note-id]: Text of the note.
+
                 May include one or more indented paragraphs.
+
         Where,
         - The 'note-id' can be pretty much anything, though typically it
           is the number of the footnote.
         - The first paragraph may start on the next line, like so:
+
             [^note-id]:
                 Text of the note.
         """
@@ -882,8 +897,10 @@ class Markdown(object):
         less_than_tab = self.tab_width - 1
         table_re = re.compile(r'''
                 (?:(?<=\n\n)|\A\n?)             # leading blank line
+
                 ^[ ]{0,%d}                      # allowed whitespace
                 (.*[|].*)  \n                   # $1: header row (at least one pipe)
+
                 ^[ ]{0,%d}                      # allowed whitespace
                 (                               # $2: underline row
                     # underline row with leading bar
@@ -892,6 +909,7 @@ class Markdown(object):
                     # or, underline row without leading bar
                     (?:  \ *:?-+:?\ *\|  )+  (?:  \ *:?-+:?\ *  )?  \n
                 )
+
                 (                               # $3: data rows
                     (?:
                         ^[ ]{0,%d}(?!\ )         # ensure line begins with 0 to less_than_tab spaces
@@ -1121,6 +1139,7 @@ class Markdown(object):
 
     def _do_links(self, text):
         """Turn Markdown link shortcuts into XHTML <a> and <img> tags.
+
         This is a combination of Markdown.pl's _DoAnchors() and
         _DoImages(). They are done together because that simplified the
         approach. It was necessary to use a different approach than
@@ -1307,8 +1326,10 @@ class Markdown(object):
     def header_id_from_text(self, text, prefix, n):
         """Generate a header id attribute value from the given header
         HTML content.
+
         This is only called if the "header-ids" extra is enabled.
         Subclasses may override this for different header ids.
+
         @param text {str} The text of the header tag
         @param prefix {str} The requested prefix for header ids. This is the
             value of the "header-ids" extra key, if any. Otherwise, None.
@@ -1745,6 +1766,7 @@ class Markdown(object):
     def _do_smart_punctuation(self, text):
         """Fancifies 'single quotes', "double quotes", and apostrophes.
         Converts --, ---, and ... into en dashes, em dashes, and ellipses.
+
         Inspiration is: <http://daringfireball.net/projects/smartypants/>
         See "test/tm-cases/smarty_pants.text" for a full discussion of the
         support here and
@@ -1938,6 +1960,7 @@ class Markdown(object):
         """Caveat emptor: there isn't much guarding against link
         patterns being formed inside other standard Markdown links, e.g.
         inside a [link def][like this].
+
         Dev Notes: *Could* consider prefixing regexes with a negative
         lookbehind assertion to attempt to guard against this.
         """
@@ -1977,8 +2000,10 @@ class Markdown(object):
 
 class MarkdownWithExtras(Markdown):
     """A markdowner class that enables most extras:
+
     - footnotes
     - code-color (only has effect if 'pygments' Python module on path)
+
     These are not included:
     - pyshell (specific to Python-related documenting)
     - code-friendly (because it *disables* part of the syntax)
@@ -1999,6 +2024,7 @@ class UnicodeWithAttrs(unicode):
     _toc = None
     def toc_html(self):
         """Return the HTML for the current TOC.
+
         This expects the `_toc` attribute to have been set on this instance.
         """
         if self._toc is None:
@@ -2037,6 +2063,7 @@ def _slugify(value):
     """
     Normalizes string, converts to lowercase, removes non-alpha characters,
     and converts spaces to hyphens.
+
     From Django's "django/template/defaultfilters.py".
     """
     import unicodedata
@@ -2087,11 +2114,13 @@ def _regex_from_encoded_pattern(s):
 # Recipe: dedent (0.1.2)
 def _dedentlines(lines, tabsize=8, skip_first_line=False):
     """_dedentlines(lines, tabsize=8, skip_first_line=False) -> dedented lines
+
         "lines" is a list of lines to dedent.
         "tabsize" is the tab width to use for indent width calculations.
         "skip_first_line" is a boolean indicating if the first line should
             be skipped for calculating the indent width and for dedenting.
             This is sometimes useful for docstrings and similar.
+
     Same as dedent() except operates on a sequence of lines. Note: the
     lines list is modified **in-place**.
     """
@@ -2155,11 +2184,13 @@ def _dedentlines(lines, tabsize=8, skip_first_line=False):
 
 def _dedent(text, tabsize=8, skip_first_line=False):
     """_dedent(text, tabsize=8, skip_first_line=False) -> dedented text
+
         "text" is the text to dedent.
         "tabsize" is the tab width to use for indent width calculations.
         "skip_first_line" is a boolean indicating if the first line should
             be skipped for calculating the indent width and for dedenting.
             This is sometimes useful for docstrings and similar.
+
     textwrap.dedent(s), but don't expand tabs to spaces
     """
     lines = text.splitlines(1)
@@ -2171,6 +2202,7 @@ class _memoized(object):
    """Decorator that caches a function's return value each time it is called.
    If called later with the same arguments, the cached value is returned, and
    not re-evaluated.
+
    http://wiki.python.org/moin/PythonDecoratorLibrary
    """
    def __init__(self, func):
@@ -2234,6 +2266,7 @@ _hr_tag_re_from_tab_width = _memoized(_hr_tag_re_from_tab_width)
 
 def _xml_escape_attr(attr, skip_single_quote=True):
     """Escape the given string for use in an HTML/XML tag attribute.
+
     By default this doesn't bother with escaping `'` to `&#39;`, presuming that
     the tag attribute is surrounded by double quotes.
     """
