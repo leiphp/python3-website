@@ -1,8 +1,9 @@
 <h1 align="center" style="margin-bottom: 20px;">Python网站开发源码实战篇</h1>
 <p align="center"><code>版本号:1.1</code></p>
 <p align="center">作者: [雷小天博客](https://www.100txy.com)</p>
-<p align="center">项目: python3-website</p>
-# 项目预览
+<p align="center">项目: python3-website</p>  
+
+# 项目预览  
 [预览](http://113.108.94.191:88/)
 
 # 开发环境
