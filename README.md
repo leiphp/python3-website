@@ -40,32 +40,32 @@ wget https://www.python.org/ftp/python/3.7.0/Python-3.7.0.tgz
 
 **3、建立一个空文件夹，用于存放python3程序**　　　　　　　　
 
-`mkdir /usr/local/python3`
+`mkdir /usr/local/python3`  
 
 **4、执行配置文件，编译，编译安装**　　　　　　　　　　　　
 
-`cd Python-3.7.0
-./configure --prefix=/usr/local/python3
-make && make install`
+`cd Python-3.7.0  
+./configure --prefix=/usr/local/python3  
+make && make install`  
+
 安装完成没有提示错误便安装成功了
 
 **5、建立软连接**　　　　　　　　　　　　　　　　　　　　　
 
-`ln -s /usr/local/python3/bin/python3.7 /usr/bin/python3
+`ln -s /usr/local/python3/bin/python3.7 /usr/bin/python3  
 ln -s /usr/local/python3/bin/pip3.7 /usr/bin/pip3`
 
 **6、测试一下python3是否可以用**　　　　　　　　　　　　　　
 
-
-`[root@mini Python-3.7.0]# python3
-Python 3.7.0 (default, Jul 28 2018, 22:47:29)
-[GCC 4.8.5 20150623 (Red Hat 4.8.5-28)] on linux
-Type "help", "copyright", "credits" or "license" for more information.
->>> print("hello world!")
-hello world!
->>> exit()
-[root@mini Python-3.7.0]# pip3 --version
-pip 10.0.1 from /usr/local/python3/lib/python3.7/site-packages/pip (python 3.7)`
+`[root@mini Python-3.7.0]# python3  
+Python 3.7.0 (default, Jul 28 2018, 22:47:29)  
+[GCC 4.8.5 20150623 (Red Hat 4.8.5-28)] on linux  
+Type "help", "copyright", "credits" or "license" for more information.  
+>>> print("hello world!")  
+hello world!  
+>>> exit()  
+[root@mini Python-3.7.0]# pip3 --version  
+pip 10.0.1 from /usr/local/python3/lib/python3.7/site-packages/pip (python 3.7)`  
 可以看到python3.7.0可以正常使用
 
 ## *二、Linux 安装pip*  
