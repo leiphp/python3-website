@@ -32,14 +32,15 @@ Python版本是3.6.x  异步框架aiohttp  前端模板引擎jinja2  MySQL的Pyt
 
 2）下载
 
-wget https://www.python.org/ftp/python/3.7.0/Python-3.7.0.tgz
- 3）、解压Python-3.7.0.tgz
+wget https://www.python.org/ftp/python/3.7.0/Python-3.7.0.tgz  
+
+3）、解压Python-3.7.0.tgz
 
 `tar -zxvf Python-3.7.0.tgz`
 
 **3、建立一个空文件夹，用于存放python3程序**　　　　　　　　
 
-mkdir /usr/local/python3
+`mkdir /usr/local/python3`
 
 **4、执行配置文件，编译，编译安装**　　　　　　　　　　　　
 
@@ -50,8 +51,8 @@ make && make install`
 
 **5、建立软连接**　　　　　　　　　　　　　　　　　　　　　
 
-ln -s /usr/local/python3/bin/python3.7 /usr/bin/python3
-ln -s /usr/local/python3/bin/pip3.7 /usr/bin/pip3
+`ln -s /usr/local/python3/bin/python3.7 /usr/bin/python3
+ln -s /usr/local/python3/bin/pip3.7 /usr/bin/pip3`
 
 **6、测试一下python3是否可以用**　　　　　　　　　　　　　　
 
