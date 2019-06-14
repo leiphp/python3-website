@@ -44,7 +44,7 @@ wget https://www.python.org/ftp/python/3.7.0/Python-3.7.0.tgz
 
 **4、执行配置文件，编译，编译安装**　　　　　　　　　　　　
 
-`cd Python-3.7.0  
+`cd Python-3.7.0    
 ./configure --prefix=/usr/local/python3  
 make && make install`  
 
