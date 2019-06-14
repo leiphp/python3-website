@@ -12,7 +12,7 @@
 Python版本是3.6.x  异步框架aiohttp  前端模板引擎jinja2  MySQL的Python异步驱动程序aiomysql  MySQL 5.x数据库、Python的第三方库watchdog可以利用操作系统的API来监控目录文件的变化
 
 # 开发步骤  
-*一、Linux 安装python3.7.0*  
+##*一、Linux 安装python3.7.0*  
 我这里使用的时centos7-mini，centos系统本身默认安装有python2.x，版本x根据不同版本系统有所不同，可通过 python --V 或 python --version 查看系统自带的python版本  有一些系统命令时需要用到python2，不能卸载  
 
 **1、安装依赖包**                                                                       
@@ -67,7 +67,7 @@ hello world!
 pip 10.0.1 from /usr/local/python3/lib/python3.7/site-packages/pip (python 3.7)`
 可以看到python3.7.0可以正常使用
 
-*二、Linux 安装pip*  
+##*二、Linux 安装pip*  
 如果你重新安装了Python3.7.0，那么pip会自带安装的，如果你用的是系统Python2.X，那么你需要自己安装pip  
 在linux中安装pip命令，如果直接用yum install 安装可能会遇到很多问题。官网的这个方法可以很快很安全的安装好pip  
 
