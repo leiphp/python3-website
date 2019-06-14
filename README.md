@@ -57,18 +57,17 @@ wget https://www.python.org/ftp/python/3.7.0/Python-3.7.0.tgz
 
 **6、测试一下python3是否可以用**　　　　　　　　　　　　　　
 
-`[root@mini Python-3.7.0]# python3  
-Python 3.7.0 (default, Jul 28 2018, 22:47:29)  
-[GCC 4.8.5 20150623 (Red Hat 4.8.5-28)] on linux  
-Type "help", "copyright", "credits" or "license" for more information. `
+`[root@mini Python-3.7.0]# python3`    
+`Python 3.7.0 (default, Jul 28 2018, 22:47:29)`    
+`[GCC 4.8.5 20150623 (Red Hat 4.8.5-28)] on linux`     
+`Type "help", "copyright", "credits" or "license" for more information. `  
 ```python
 >>> print("hello world!")  
 hello world!  
 >>> exit()  
 ```
-`[root@mini Python-3.7.0]# pip3 --version  
-pip 10.0.1 from /usr/local/python3/lib/python3.7/site-packages/pip (python 3.7)`
-
+`[root@mini Python-3.7.0]# pip3 --version`  
+`pip 10.0.1 from /usr/local/python3/lib/python3.7/site-packages/pip (python 3.7)`   
 
 可以看到python3.7.0可以正常使用
 
