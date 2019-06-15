@@ -117,9 +117,8 @@ Nginx可以作为服务进程直接启动，但`app.py`还不行，所以，`Sup
 * MySQL：数据库服务。
 
 在Linux服务器上用apt可以直接安装上述服务：  
-`$ sudo apt-get install nginx supervisor python3 mysql-server`
+`$ sudo apt-get install nginx supervisor python3 mysql-server`  
 然后，再把我们自己的Web App用到的Python库安装了：  
-
 `$ sudo pip3 install jinja2 aiomysql aiohttp`  
 在服务器上创建目录/srv/awesome/以及相应的子目录。  
 
