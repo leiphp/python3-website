@@ -1,7 +1,7 @@
 <h1 align="center" style="margin-bottom: 20px;">Python网站开发源码实战篇</h1>
 <p align="center"><code>版本号:1.1</code></p>
 <p align="center">作者: [雷小天博客](https://www.100txy.com)</p>
-<p align="center">项目: python3-website</p>  
+<p align="center">项目: python3-website(基于廖雪峰的awesome)</p>  
 
 # 项目预览  
 部署在电信云上面，因为电信云主机80端口默认都是关闭的，需要申请备案才给开放，我也懒得备案，就用88端口。网址：http://113.108.94.191:88/ 欢迎交流学习  
@@ -89,6 +89,43 @@ hello world!
 **4、下载完成后，执行命令python get-pip.py**
 ![pip3](/www/static/images/pip3.png)
 
+# 部署方式  
+利用Python自带的asyncio，我们已经编写了一个异步高性能服务器。但是，我们还需要一个高性能的Web服务器，这里选择Nginx，它可以处理静态资源，同时作为反向代理把动态请求交给Python代码处理。这个模型如下：
+![nginx-awesome-mysql](/www/static/images/ps1.png)
+Nginx负责分发请求：
+![browser-nginx-awesome](/www/static/images/ps2.png)
+在服务器端，我们需要定义好部署的目录结构：
+`/  
++- srv/  
+   +- awesome/       <-- Web App根目录  
+      +- www/        <-- 存放Python源码  
+      |  +- static/  <-- 存放静态资源文件  
+      +- log/        <-- 存放log`  
+在服务器上部署，要考虑到新版本如果运行不正常，需要回退到旧版本时怎么办。每次用新的代码覆盖掉旧的文件是不行的，需要一个类似版本控制的机制。由于Linux系统提供了软链接功能，所以，我们把www作为一个软链接，它指向哪个目录，哪个目录就是当前运行的版本：  
+![browser-nginx-awesome](/www/static/images/ps3.png)  
+
+而Nginx和python代码的配置文件只需要指向www目录即可。  
+
+Nginx可以作为服务进程直接启动，但app.py还不行，所以，Supervisor登场！Supervisor是一个管理进程的工具，可以随系统启动而启动服务，它还时刻监控服务进程，如果服务进程意外退出，Supervisor可以自动重启服务。
+
+总结一下我们需要用到的服务有：
+
+* Nginx：高性能Web服务器+负责反向代理；
+
+* Supervisor：监控服务进程的工具；
+
+* MySQL：数据库服务。
+
+在Linux服务器上用apt可以直接安装上述服务：
+`$ sudo apt-get install nginx supervisor python3 mysql-server`
+然后，再把我们自己的Web App用到的Python库安装了：
+
+`$ sudo pip3 install jinja2 aiomysql aiohttp`
+在服务器上创建目录/srv/awesome/以及相应的子目录。
+
+在服务器上初始化MySQL数据库，把数据库初始化脚本schema.sql复制到服务器上执行：
+`$ mysql -u root -p < schema.sql`
+服务器端准备就绪。
 
 # 资源文件
 jQuery压缩库  uikit这个强大的CSS框架
