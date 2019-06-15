@@ -92,7 +92,7 @@ hello world!
 # 部署方式  
 利用Python自带的asyncio，我们已经编写了一个异步高性能服务器。但是，我们还需要一个高性能的Web服务器，这里选择Nginx，它可以处理静态资源，同时作为反向代理把动态请求交给Python代码处理。这个模型如下：
 ![nginx-awesome-mysql](/www/static/images/ps1.png)  
-Nginx负责分发请求：
+Nginx负责分发请求：  
 ![browser-nginx-awesome](/www/static/images/ps2.png)  
 在服务器端，我们需要定义好部署的目录结构：  
 `/`  
